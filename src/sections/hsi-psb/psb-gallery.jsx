@@ -8,7 +8,8 @@ export default function PSBGallery() {
   const activities = [
     {
       title: "HSI Tree Climbing",
-      image: "/assets/background/hsi-tree-climbing.jpg",
+      image: "/assets/background/hsi-tree-climbing.webp",
+      imageFallback: "/assets/background/hsi-tree-climbing.jpg",
       description: "Kegiatan outdoor yang menantang dan membangun keberanian santri",
       link: "https://photos.google.com/share/AF1QipOBFtCMwMstb7nGiN4pOm5cs8faOrQ1aO88CzRayX9-KQ0h0LLyt8YLv8M6dyKnpw?key=ODlMcEswOEp3cHp5V0ppMTF1bi1JT19MUXFyWWl3",
       color: "#64B5F6",
@@ -16,7 +17,8 @@ export default function PSBGallery() {
     },
     {
       title: "Farewell Party with GE",
-      image: "/assets/background/farewell-party.jpg",
+      image: "/assets/background/farewell-party.webp",
+      imageFallback: "/assets/background/farewell-party.jpg",
       description: "Momen spesial perpisahan dengan guru dan teman-teman",
       link: "https://photos.google.com/share/AF1QipOBj4PvCLBD0dXwQJAnppwAgcB8e1hkzhI8bcuFuyhlJlHycawyFI8BME-UwLh06g?key=SzctVVVNNUZEaVhycmozTmh0WmZ6VThsS3VVc3RB",
       color: "#64B5F6",
@@ -24,7 +26,8 @@ export default function PSBGallery() {
     },
     {
       title: "HSIBS Goes to Masjid",
-      image: "/assets/background/goestomasjid.jpg",
+      image: "/assets/background/goestomasjid.webp",
+      imageFallback: "/assets/background/goestomasjid.jpg",
       description: "Kunjungan ke masjid untuk memperdalam pemahaman spiritual",
       link: "https://photos.google.com/share/AF1QipMOTORk1aP9zjnpdKeAjLrP3PXTOPtT1dmO5Net7EIK9TbiVO9O--F9oFUV6zORFg?key=M3NDcVNleHJKYlJDR2ZMN2NsQVdYSnBSX0dvX3Jn",
       color: "#64B5F6",
@@ -32,7 +35,8 @@ export default function PSBGallery() {
     },
     {
       title: "Nusantara Spirit Day",
-      image: "/assets/background/nusantara-spirit.JPG",
+      image: "/assets/background/nusantara-spirit.webp",
+      imageFallback: "/assets/background/nusantara-spirit.JPG",
       description: "Perayaan semangat kebangsaan dan budaya nusantara",
       link: "https://photos.google.com/share/AF1QipOStgR-WEcQI-wehg9NE9CzLIWgkn92vnagSdyr3G1gDgjVvbGQDG_mSALxU-r06Q?key=Y3NaQXVpV0NMOHlBT2JXUm5CSEVJdTRGUkdXWmN3",
       color: "#64B5F6",
@@ -40,7 +44,8 @@ export default function PSBGallery() {
     },
     {
       title: "Kunjungan Panti Asuhan",
-      image: "/assets/background/kunjungan-panti.jpg",
+      image: "/assets/background/kunjungan-panti.webp",
+      imageFallback: "/assets/background/kunjungan-panti.jpg",
       description: "Program sosial berbagi kasih sayang kepada anak-anak panti",
       link: "https://photos.google.com/share/AF1QipOd9o1z3q_YFzFGwkpxZzqx4fzPY7FkMVsrIOhtei3NIFQFE80tSCC3pk-dIcKtyA?key=S05vZkRHb0Zxekh2TFU1Z3ZidjRKdEVBTXF5ZzV3",
       color: "#64B5F6",
@@ -48,7 +53,8 @@ export default function PSBGallery() {
     },
     {
       title: "Tadabbur Alam",
-      image: "/assets/background/tadabur-alam.JPG",
+      image: "/assets/background/tadabur-alam.webp",
+      imageFallback: "/assets/background/tadabur-alam.JPG",
       description: "Refleksi spiritual melalui keindahan alam ciptaan Allah",
       link: "https://photos.google.com/share/AF1QipPnuwRZyFMfYt5AGUNLL8MP69EyhOiKl3pDmey0xZjhl0QwhhwVRdekbQi_ZhRxJQ?key=NGFWSEdaMjlCWDdGNmtsc0dUWlBJRnk3TTF4eGxB",
       color: "#64B5F6",
@@ -172,32 +178,35 @@ export default function PSBGallery() {
                         },
                       }}
                     >
-                      <Box
-                        component="img"
-                        src={activity.image}
-                        alt={activity.title}
-                        loading="lazy"
-                        decoding="async"
-                        sx={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          transition: "transform 0.3s ease, opacity 0.5s ease",
-                          opacity: 1,
-                          animation: "fadeIn 0.6s ease-in-out",
-                          "@keyframes fadeIn": {
-                            "0%": {
-                              opacity: 0,
+                      <picture>
+                        <source srcSet={activity.image} type="image/webp" />
+                        <Box
+                          component="img"
+                          src={activity.imageFallback}
+                          alt={activity.title}
+                          loading="lazy"
+                          decoding="async"
+                          sx={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            transition: "transform 0.3s ease, opacity 0.5s ease",
+                            opacity: 1,
+                            animation: "fadeIn 0.6s ease-in-out",
+                            "@keyframes fadeIn": {
+                              "0%": {
+                                opacity: 0,
+                              },
+                              "100%": {
+                                opacity: 1,
+                              },
                             },
-                            "100%": {
-                              opacity: 1,
+                            "&:hover": {
+                              transform: "scale(1.05)",
                             },
-                          },
-                          "&:hover": {
-                            transform: "scale(1.05)",
-                          },
-                        }}
-                      />
+                          }}
+                        />
+                      </picture>
                     </Box>
 
                     {/* Content */}
