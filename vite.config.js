@@ -22,20 +22,23 @@ export default defineConfig({
         initialIsOpen: false,
       },
     }),
-    compression({
-      verbose: true,
-      disable: false,
-      threshold: 10240,
-      algorithm: 'brotli',
-      ext: '.br',
-    }),
-    compression({
-      verbose: true,
-      disable: false,
-      threshold: 10240,
-      algorithm: 'gzip',
-      ext: '.gz',
-    }),
+    // Only compress locally, Vercel handles compression automatically
+    ...(process.env.VERCEL !== '1' ? [
+      compression({
+        verbose: false,
+        disable: false,
+        threshold: 10240,
+        algorithm: 'brotli',
+        ext: '.br',
+      }),
+      compression({
+        verbose: false,
+        disable: false,
+        threshold: 10240,
+        algorithm: 'gzip',
+        ext: '.gz',
+      }),
+    ] : []),
   ],
   resolve: {
     alias: [
