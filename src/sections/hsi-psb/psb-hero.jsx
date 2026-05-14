@@ -8,7 +8,7 @@ export default function PSBHero() {
       sx={{
         py: { xs: 8, md: 12 },
         background: "url(/assets/background/hero.png) center/cover no-repeat",
-        backgroundAttachment: "fixed",
+        backgroundAttachment: "scroll",
         position: "relative",
         overflow: "hidden",
         "&::before": {
