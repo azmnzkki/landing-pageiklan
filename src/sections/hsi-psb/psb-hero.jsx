@@ -28,7 +28,7 @@ export default function PSBHero() {
       {/* LCP-optimized img tag - must be visible immediately, not lazy-loaded */}
       <Box
         component="img"
-        src="/assets/background/hero.png"
+        src="/assets/background/hero.webp"
         alt=""
         loading="eager"
         fetchpriority="high"

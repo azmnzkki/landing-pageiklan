@@ -35,7 +35,7 @@ export function Logo({ sx, disabled, className, href = '/', isSingle = true, ...
   const singleLogo = (
     <img
       alt="HSIBS Logo"
-      src="/logo/logohsibs.png"
+      src="/logo/logohsibs.webp"
       width="100%"
       height="100%"
       style={{ objectFit: 'contain' }}
@@ -45,7 +45,7 @@ export function Logo({ sx, disabled, className, href = '/', isSingle = true, ...
   const fullLogo = (
     <img
       alt="HSIBS Logo"
-      src="/logo/logohsibs.png"
+      src="/logo/logohsibs.webp"
       width="100%"
       height="100%"
       style={{ objectFit: 'contain' }}

@@ -164,7 +164,7 @@ export default function PSBAbout() {
                 {/* Image with Border Radius */}
                 <Box
                   component="img"
-                  src="/assets/background/about.jpg"
+                  src="/assets/background/about.webp"
                   alt="HSI Boarding School"
                   loading="lazy"
                   sx={{

@@ -123,6 +123,7 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^16.0.0",
     "prettier": "^3.5.3",
+    "sharp": "^0.34.5",
     "terser": "^5.47.1",
     "vite": "^6.2.3",
     "vite-plugin-checker": "^0.9.1",
