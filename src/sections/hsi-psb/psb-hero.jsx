@@ -5,10 +5,9 @@ import { Iconify } from "src/components/iconify";
 export default function PSBHero() {
   return (
     <Box
+      component="section"
       sx={{
         py: { xs: 8, md: 12 },
-        background: "url(/assets/background/hero.png) center/cover no-repeat",
-        backgroundAttachment: "scroll",
         position: "relative",
         overflow: "hidden",
         "&::before": {
@@ -20,12 +19,32 @@ export default function PSBHero() {
           bottom: 0,
           background: "rgba(15, 20, 25, 0.6)",
           pointerEvents: "none",
+          zIndex: 1,
         },
       }}
       role="banner"
       aria-label="Hero section - Pendaftaran santri baru HSI Boarding School"
     >
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
+      {/* LCP-optimized img tag - must be visible immediately, not lazy-loaded */}
+      <Box
+        component="img"
+        src="/assets/background/hero.png"
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        sx={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          objectPosition: "center",
+          zIndex: 0,
+        }}
+      />
+      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
         <Stack spacing={4} alignItems="center" textAlign="center">
           {/* Badge */}
           <Box
