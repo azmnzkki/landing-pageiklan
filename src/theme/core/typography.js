@@ -24,6 +24,21 @@ function responsiveFontSizes(obj) {
   }, {});
 }
 
+// Add font-display: swap to prevent FOUT (Flash of Unstyled Text)
+const injectFontDisplay = () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    @font-face {
+      font-display: swap;
+    }
+  `;
+  document.head.appendChild(style);
+};
+
+if (typeof window !== 'undefined') {
+  injectFontDisplay();
+}
+
 // ----------------------------------------------------------------------
 
 const primaryFont = setFont(themeConfig.fontFamily.primary);

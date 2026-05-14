@@ -104,12 +104,14 @@ export default function PSBCta() {
                   variant="contained"
                   size="large"
                   startIcon={<Iconify icon="mdi:pencil" width={20} sx={{ color: "#ffffff" }} />}
+                  aria-label="Daftar sekarang di portal PSB HSI Boarding School"
                   sx={{
                     background: "linear-gradient(135deg, #2196F3 0%, #64B5F6 100%)",
                     color: "#ffffff !important",
                     fontWeight: 700,
                     px: 4,
                     py: 1.5,
+                    minHeight: 48,
                     borderRadius: "12px",
                     textTransform: "none",
                     transition: "all 0.3s ease",
@@ -122,6 +124,10 @@ export default function PSBCta() {
                       boxShadow: `0 20px 48px ${alpha("#2196F3", 0.4)}`,
                       color: "#ffffff !important",
                     },
+                    "&:focus-visible": {
+                      outline: "2px solid #ffffff",
+                      outlineOffset: "2px",
+                    },
                   }}
                 >
                   Daftar Sekarang
@@ -133,12 +139,14 @@ export default function PSBCta() {
                   variant="outlined"
                   size="large"
                   startIcon={<Iconify icon="mdi:download" width={20} />}
+                  aria-label="Download brosur HSI Boarding School"
                   sx={{
                     color: "#2196F3",
                     borderColor: "#2196F3",
                     fontWeight: 700,
                     px: 4,
                     py: 1.5,
+                    minHeight: 48,
                     borderRadius: "12px",
                     textTransform: "none",
                     transition: "all 0.3s ease",
@@ -148,6 +156,10 @@ export default function PSBCta() {
                       color: "#64B5F6",
                       background: alpha("#2196F3", 0.1),
                       transform: "translateY(-4px)",
+                    },
+                    "&:focus-visible": {
+                      outline: "2px solid #2196F3",
+                      outlineOffset: "2px",
                     },
                   }}
                 >
@@ -268,6 +280,7 @@ export default function PSBCta() {
                   href="https://link.rotator.biz.id/tanya-psb"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Chat dengan kami melalui WhatsApp"
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -275,8 +288,16 @@ export default function PSBCta() {
                     cursor: "pointer",
                     textDecoration: "none",
                     transition: "all 0.3s ease",
+                    py: 0.5,
+                    px: 1,
+                    borderRadius: 1,
                     "&:hover": {
                       transform: "scale(1.05)",
+                      backgroundColor: alpha("#42A5F5", 0.1),
+                    },
+                    "&:focus-visible": {
+                      outline: "2px solid #42A5F5",
+                      outlineOffset: "2px",
                     },
                   }}
                 >

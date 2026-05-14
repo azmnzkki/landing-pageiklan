@@ -177,11 +177,22 @@ export default function PSBGallery() {
                         src={activity.image}
                         alt={activity.title}
                         loading="lazy"
+                        decoding="async"
                         sx={{
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
-                          transition: "transform 0.3s ease",
+                          transition: "transform 0.3s ease, opacity 0.5s ease",
+                          opacity: 1,
+                          animation: "fadeIn 0.6s ease-in-out",
+                          "@keyframes fadeIn": {
+                            "0%": {
+                              opacity: 0,
+                            },
+                            "100%": {
+                              opacity: 1,
+                            },
+                          },
                           "&:hover": {
                             transform: "scale(1.05)",
                           },
@@ -222,12 +233,14 @@ export default function PSBGallery() {
                         target="_blank"
                         rel="noopener noreferrer"
                         startIcon={<Iconify icon="mdi:image-multiple" width={20} />}
+                        aria-label={`Lihat galeri lengkap ${activity.title}`}
                         sx={{
                           background: alpha(activity.color, 0.15),
                           color: activity.color,
                           fontWeight: 700,
                           fontSize: "0.85rem",
                           py: 1.5,
+                          minHeight: 44,
                           borderRadius: 1,
                           textTransform: "none",
                           transition: "all 0.3s ease",
@@ -235,6 +248,10 @@ export default function PSBGallery() {
                           "&:hover": {
                             background: alpha(activity.color, 0.25),
                             borderColor: activity.color,
+                          },
+                          "&:focus-visible": {
+                            outline: `2px solid ${activity.color}`,
+                            outlineOffset: "2px",
                           },
                         }}
                       >

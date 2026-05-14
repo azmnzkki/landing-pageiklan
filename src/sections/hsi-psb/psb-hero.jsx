@@ -8,6 +8,7 @@ export default function PSBHero() {
       sx={{
         py: { xs: 8, md: 12 },
         background: "url(/assets/background/hero.png) center/cover no-repeat",
+        backgroundAttachment: "fixed",
         position: "relative",
         overflow: "hidden",
         "&::before": {
@@ -21,6 +22,8 @@ export default function PSBHero() {
           pointerEvents: "none",
         },
       }}
+      role="banner"
+      aria-label="Hero section - Pendaftaran santri baru HSI Boarding School"
     >
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
         <Stack spacing={4} alignItems="center" textAlign="center">
@@ -53,6 +56,7 @@ export default function PSBHero() {
 
           {/* Main Headline */}
           <Typography
+            component="h1"
             variant="h2"
             sx={{
               fontWeight: 800,
@@ -91,17 +95,23 @@ export default function PSBHero() {
               rel="noopener noreferrer"
               variant="contained"
               size="large"
+              aria-label="Daftar sekarang di portal PSB HSI Boarding School"
               sx={{
                 background: "#2196F3",
                 color: "#ffffff",
                 fontWeight: 700,
                 px: 4,
                 py: 1.5,
+                minHeight: 48,
                 borderRadius: 1,
                 "&:hover": {
                   background: "#0D47A1",
                   color: "#ffffff",
-                  boxShadow: `0 8px 24px ${alpha("#2196F3", 0.3)}`,
+                  boxShadow: `0 8px 24px rgba(33, 150, 243, 0.3)`,
+                },
+                "&:focus-visible": {
+                  outline: "2px solid #ffffff",
+                  outlineOffset: "2px",
                 },
               }}
             >
@@ -112,16 +122,22 @@ export default function PSBHero() {
               href="#tentang"
               variant="outlined"
               size="large"
+              aria-label="Pelajari lebih lanjut tentang HSI Boarding School"
               sx={{
                 color: "#ffffff",
-                borderColor: alpha("#ffffff", 0.5),
+                borderColor: `rgba(255, 255, 255, 0.5)`,
                 fontWeight: 700,
                 px: 4,
                 py: 1.5,
+                minHeight: 48,
                 borderRadius: 1,
                 "&:hover": {
                   borderColor: "#ffffff",
-                  background: alpha("#ffffff", 0.1),
+                  background: `rgba(255, 255, 255, 0.1)`,
+                },
+                "&:focus-visible": {
+                  outline: "2px solid #ffffff",
+                  outlineOffset: "2px",
                 },
               }}
             >
