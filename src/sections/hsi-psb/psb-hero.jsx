@@ -26,24 +26,27 @@ export default function PSBHero() {
       aria-label="Hero section - Pendaftaran santri baru HSI Boarding School"
     >
       {/* LCP-optimized img tag - must be visible immediately, not lazy-loaded */}
-      <Box
-        component="img"
-        src="/assets/background/hero.webp"
-        alt=""
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          objectPosition: "center",
-          zIndex: 0,
-        }}
-      />
+      <picture>
+        <source srcSet="/assets/background/hero.webp" type="image/webp" />
+        <Box
+          component="img"
+          src="/assets/background/hero.png"
+          alt=""
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          sx={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
+      </picture>
       <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
         <Stack spacing={4} alignItems="center" textAlign="center">
           {/* Badge */}
