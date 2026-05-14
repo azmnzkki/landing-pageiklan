@@ -1,0 +1,110 @@
+import { useBoolean } from 'minimal-shared/hooks';
+
+import Alert from '@mui/material/Alert';
+
+import { usePathname } from 'src/routes/hooks';
+
+import { Logo } from 'src/components/logo';
+import { WhatsAppBubble } from 'src/components/whatsapp-bubble/whatsapp-bubble';
+
+import { Footer, HomeFooter } from './footer';
+import { MainSection } from '../core/main-section';
+import { NavMobile } from './nav/mobile/nav-mobile';
+import { LayoutSection } from '../core/layout-section';
+import { HeaderSection } from '../core/header-section';
+import { MenuButton } from '../components/menu-button';
+import { NavDesktop } from './nav/desktop/nav-desktop';
+import { navData as mainNavData } from '../nav-config-main';
+
+// ----------------------------------------------------------------------
+
+export function MainLayout({ sx, cssVars, children, slotProps, layoutQuery = 'md' }) {
+  const pathname = usePathname();
+
+  const { value: open, onFalse: onClose, onTrue: onOpen } = useBoolean();
+
+  const isHomePage = pathname === '/';
+
+  const navData = slotProps?.nav?.data ?? mainNavData;
+
+  const renderHeader = () => {
+    const headerSlots = {
+      topArea: (
+        <Alert severity="info" sx={{ display: 'none', borderRadius: 0 }}>
+          This is an info Alert.
+        </Alert>
+      ),
+      leftArea: (
+        <>
+          {/** @slot Nav mobile */}
+          <MenuButton
+            onClick={onOpen}
+            sx={(theme) => ({
+              mr: 1,
+              ml: -1,
+              [theme.breakpoints.up(layoutQuery)]: { display: 'none' },
+            })}
+          />
+          <NavMobile data={navData} open={open} onClose={onClose} />
+
+          {/** @slot Logo */}
+          <Logo />
+        </>
+      ),
+      rightArea: (
+        <>
+          {/** @slot Nav desktop */}
+          <NavDesktop
+            data={navData}
+            sx={(theme) => ({
+              display: 'none',
+              [theme.breakpoints.up(layoutQuery)]: { mr: 2.5, display: 'flex' },
+            })}
+          />
+        </>
+      ),
+    };
+
+    return (
+      <HeaderSection
+        layoutQuery={layoutQuery}
+        {...slotProps?.header}
+        slots={{ ...headerSlots, ...slotProps?.header?.slots }}
+        slotProps={slotProps?.header?.slotProps}
+        sx={slotProps?.header?.sx}
+      />
+    );
+  };
+
+  const renderFooter = () =>
+    isHomePage ? (
+      <HomeFooter sx={slotProps?.footer?.sx} />
+    ) : (
+      <Footer sx={slotProps?.footer?.sx} layoutQuery={layoutQuery} />
+    );
+
+  const renderMain = () => <MainSection {...slotProps?.main}>{children}</MainSection>;
+
+  return (
+    <>
+      <LayoutSection
+        /** **************************************
+         * @Header
+         *************************************** */
+        headerSection={renderHeader()}
+        /** **************************************
+         * @Footer
+         *************************************** */
+        footerSection={renderFooter()}
+        /** **************************************
+         * @Styles
+         *************************************** */
+        cssVars={cssVars}
+        sx={sx}
+      >
+        {renderMain()}
+      </LayoutSection>
+      <WhatsAppBubble />
+    </>
+  );
+}
