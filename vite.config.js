@@ -63,14 +63,14 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react/')) {
+              return 'vendor-react';
+            }
             if (id.includes('@mui')) {
-              return 'mui';
+              return 'vendor-mui';
             }
             if (id.includes('framer-motion')) {
               return 'framer';
-            }
-            if (id.includes('react')) {
-              return 'vendor';
             }
             if (id.includes('@iconify')) {
               return 'iconify';
