@@ -22,7 +22,6 @@ export default defineConfig({
         initialIsOpen: false,
       },
     }),
-    // Only compress locally, Vercel handles compression automatically
     ...(process.env.VERCEL !== '1' ? [
       compression({
         verbose: false,
@@ -47,6 +46,7 @@ export default defineConfig({
         replacement: path.resolve(process.cwd(), 'src/$1'),
       },
     ],
+    dedupe: ['react', 'react-dom', '@mui/material'],
   },
   server: { port: PORT, host: true },
   preview: { port: PORT, host: true },
