@@ -1,15 +1,19 @@
 import { m } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 
 import { Box, Card, Stack, alpha, Button, Container, Typography } from "@mui/material";
 
 import { Iconify } from "src/components/iconify";
 
 export default function PSBGallery() {
+  const [loadedImages, setLoadedImages] = useState({});
+  const observerRef = useRef(null);
   const activities = [
     {
       title: "HSI Tree Climbing",
       image: "/assets/background/hsi-tree-climbing.webp",
       imageFallback: "/assets/background/hsi-tree-climbing.jpg",
+      blurHash: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23D4E8F7' width='400' height='300'/%3E%3C/svg%3E",
       description: "Kegiatan outdoor yang menantang dan membangun keberanian santri",
       link: "https://photos.google.com/share/AF1QipOBFtCMwMstb7nGiN4pOm5cs8faOrQ1aO88CzRayX9-KQ0h0LLyt8YLv8M6dyKnpw?key=ODlMcEswOEp3cHp5V0ppMTF1bi1JT19MUXFyWWl3",
       color: "#64B5F6",
@@ -19,6 +23,7 @@ export default function PSBGallery() {
       title: "Farewell Party with GE",
       image: "/assets/background/farewell-party.webp",
       imageFallback: "/assets/background/farewell-party.jpg",
+      blurHash: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23D4E8F7' width='400' height='300'/%3E%3C/svg%3E",
       description: "Momen spesial perpisahan dengan guru dan teman-teman",
       link: "https://photos.google.com/share/AF1QipOBj4PvCLBD0dXwQJAnppwAgcB8e1hkzhI8bcuFuyhlJlHycawyFI8BME-UwLh06g?key=SzctVVVNNUZEaVhycmozTmh0WmZ6VThsS3VVc3RB",
       color: "#64B5F6",
@@ -28,6 +33,7 @@ export default function PSBGallery() {
       title: "HSIBS Goes to Masjid",
       image: "/assets/background/goestomasjid.webp",
       imageFallback: "/assets/background/goestomasjid.jpg",
+      blurHash: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23D4E8F7' width='400' height='300'/%3E%3C/svg%3E",
       description: "Kunjungan ke masjid untuk memperdalam pemahaman spiritual",
       link: "https://photos.google.com/share/AF1QipMOTORk1aP9zjnpdKeAjLrP3PXTOPtT1dmO5Net7EIK9TbiVO9O--F9oFUV6zORFg?key=M3NDcVNleHJKYlJDR2ZMN2NsQVdYSnBSX0dvX3Jn",
       color: "#64B5F6",
@@ -37,6 +43,7 @@ export default function PSBGallery() {
       title: "Nusantara Spirit Day",
       image: "/assets/background/nusantara-spirit.webp",
       imageFallback: "/assets/background/nusantara-spirit.JPG",
+      blurHash: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23D4E8F7' width='400' height='300'/%3E%3C/svg%3E",
       description: "Perayaan semangat kebangsaan dan budaya nusantara",
       link: "https://photos.google.com/share/AF1QipOStgR-WEcQI-wehg9NE9CzLIWgkn92vnagSdyr3G1gDgjVvbGQDG_mSALxU-r06Q?key=Y3NaQXVpV0NMOHlBT2JXUm5CSEVJdTRGUkdXWmN3",
       color: "#64B5F6",
@@ -46,6 +53,7 @@ export default function PSBGallery() {
       title: "Kunjungan Panti Asuhan",
       image: "/assets/background/kunjungan-panti.webp",
       imageFallback: "/assets/background/kunjungan-panti.jpg",
+      blurHash: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23D4E8F7' width='400' height='300'/%3E%3C/svg%3E",
       description: "Program sosial berbagi kasih sayang kepada anak-anak panti",
       link: "https://photos.google.com/share/AF1QipOd9o1z3q_YFzFGwkpxZzqx4fzPY7FkMVsrIOhtei3NIFQFE80tSCC3pk-dIcKtyA?key=S05vZkRHb0Zxekh2TFU1Z3ZidjRKdEVBTXF5ZzV3",
       color: "#64B5F6",
@@ -55,6 +63,7 @@ export default function PSBGallery() {
       title: "Tadabbur Alam",
       image: "/assets/background/tadabur-alam.webp",
       imageFallback: "/assets/background/tadabur-alam.JPG",
+      blurHash: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23D4E8F7' width='400' height='300'/%3E%3C/svg%3E",
       description: "Refleksi spiritual melalui keindahan alam ciptaan Allah",
       link: "https://photos.google.com/share/AF1QipPnuwRZyFMfYt5AGUNLL8MP69EyhOiKl3pDmey0xZjhl0QwhhwVRdekbQi_ZhRxJQ?key=NGFWSEdaMjlCWDdGNmtsc0dUWlBJRnk3TTF4eGxB",
       color: "#64B5F6",
@@ -74,6 +83,25 @@ export default function PSBGallery() {
       },
     },
   };
+
+  // Intersection Observer untuk lazy load images
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = entry.target.getAttribute("data-idx");
+            setLoadedImages((prev) => ({ ...prev, [idx]: true }));
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "50px" }
+    );
+
+    observerRef.current = observer;
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Box sx={{ py: { xs: 8, md: 12 }, background: '#FFFFFF' }}>
@@ -132,7 +160,16 @@ export default function PSBGallery() {
               }}
             >
               {activities.map((activity, idx) => (
-                <m.div key={idx} variants={itemVariants}>
+                <m.div
+                  key={idx}
+                  variants={itemVariants}
+                  ref={(el) => {
+                    if (el && observerRef.current) {
+                      el.setAttribute("data-idx", idx);
+                      observerRef.current.observe(el);
+                    }
+                  }}
+                >
                   <Card
                     sx={{
                       height: "100%",
@@ -167,46 +204,58 @@ export default function PSBGallery() {
                         height: 200,
                         overflow: "hidden",
                         background: "#E8E8E8",
-                        animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-                        "@keyframes pulse": {
-                          "0%, 100%": {
-                            opacity: 1,
-                          },
-                          "50%": {
-                            opacity: 0.7,
-                          },
-                        },
+                        backgroundImage: `url('${activity.blurHash}')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
                       }}
                     >
-                      <picture>
-                        <source srcSet={activity.image} type="image/webp" />
+                      {loadedImages[idx] ? (
+                        <picture>
+                          <source srcSet={activity.image} type="image/webp" />
+                          <Box
+                            component="img"
+                            src={activity.imageFallback}
+                            alt={activity.title}
+                            loading="lazy"
+                            decoding="async"
+                            sx={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              transition: "transform 0.3s ease, opacity 0.5s ease",
+                              opacity: 1,
+                              animation: "fadeIn 0.6s ease-in-out",
+                              "@keyframes fadeIn": {
+                                "0%": {
+                                  opacity: 0,
+                                },
+                                "100%": {
+                                  opacity: 1,
+                                },
+                              },
+                              "&:hover": {
+                                transform: "scale(1.05)",
+                              },
+                            }}
+                          />
+                        </picture>
+                      ) : (
                         <Box
-                          component="img"
-                          src={activity.imageFallback}
-                          alt={activity.title}
-                          loading="lazy"
-                          decoding="async"
                           sx={{
                             width: "100%",
                             height: "100%",
-                            objectFit: "cover",
-                            transition: "transform 0.3s ease, opacity 0.5s ease",
-                            opacity: 1,
-                            animation: "fadeIn 0.6s ease-in-out",
-                            "@keyframes fadeIn": {
-                              "0%": {
-                                opacity: 0,
-                              },
-                              "100%": {
+                            animation: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+                            "@keyframes pulse": {
+                              "0%, 100%": {
                                 opacity: 1,
                               },
-                            },
-                            "&:hover": {
-                              transform: "scale(1.05)",
+                              "50%": {
+                                opacity: 0.7,
+                              },
                             },
                           }}
                         />
-                      </picture>
+                      )}
                     </Box>
 
                     {/* Content */}
