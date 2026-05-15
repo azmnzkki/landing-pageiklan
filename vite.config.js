@@ -59,27 +59,7 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
-    rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('react-dom') || id.includes('react/')) {
-              return 'vendor-react';
-            }
-            if (id.includes('@mui')) {
-              return 'vendor-mui';
-            }
-            if (id.includes('framer-motion')) {
-              return 'framer';
-            }
-            if (id.includes('@iconify')) {
-              return 'iconify';
-            }
-            return 'vendor';
-          }
-        },
-      },
-    },
+    rollupOptions: {},
     chunkSizeWarningLimit: 1000,
     cssCodeSplit: true,
     sourcemap: false,
