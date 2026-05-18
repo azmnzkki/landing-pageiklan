@@ -34,7 +34,7 @@ const SOCIAL_LINKS = [
   {
     name: 'YouTube',
     icon: 'mdi:youtube',
-    href: 'https://www.youtube.com/@hsiboardingschool',
+    href: 'https://www.youtube.com/@hsiboardingschool/streams',
     color: '#FF0000',
   },
 ];

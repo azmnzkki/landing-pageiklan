@@ -1,6 +1,33 @@
-import { Box, Stack, alpha, Button, Container, Typography } from "@mui/material";
+import { Box, Stack, alpha, Button, Tooltip, Container, Typography, IconButton } from "@mui/material";
 
 import { Iconify } from "src/components/iconify";
+
+const SOCIAL_LINKS = [
+  {
+    name: 'Instagram',
+    icon: 'socials:instagram',
+    href: 'https://www.instagram.com/hsiboardingschool/',
+    color: '#E4405F',
+  },
+  {
+    name: 'Facebook',
+    icon: 'socials:facebook',
+    href: 'https://www.facebook.com/profile.php?id=61586171438715&locale=id_ID',
+    color: '#1877F2',
+  },
+  {
+    name: 'LinkedIn',
+    icon: 'socials:linkedin',
+    href: 'https://www.linkedin.com/school/hsiboardingschool/posts/?feedView=all',
+    color: '#0A66C2',
+  },
+  {
+    name: 'YouTube',
+    icon: 'mdi:youtube',
+    href: 'https://www.youtube.com/@hsiboardingschool/streams',
+    color: '#FF0000',
+  },
+];
 
 export default function PSBHero() {
   return (
@@ -166,6 +193,103 @@ export default function PSBHero() {
               Kenali Kami Lebih Lanjut
             </Button>
           </Stack>
+
+          {/* Social Media Icons */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 1.5,
+              mt: 1,
+            }}
+          >
+            {/* Divider label */}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                width: "100%",
+                maxWidth: 280,
+              }}
+            >
+              <Box
+                sx={{
+                  flex: 1,
+                  height: "1px",
+                  background: "rgba(255,255,255,0.2)",
+                }}
+              />
+              <Typography
+                variant="caption"
+                sx={{
+                  color: alpha("#ffffff", 0.55),
+                  fontWeight: 500,
+                  letterSpacing: 1,
+                  fontSize: "0.7rem",
+                  textTransform: "uppercase",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Ikuti Kami
+              </Typography>
+              <Box
+                sx={{
+                  flex: 1,
+                  height: "1px",
+                  background: "rgba(255,255,255,0.2)",
+                }}
+              />
+            </Box>
+
+            {/* Icon Row */}
+            <Stack
+              direction="row"
+              spacing={1.5}
+              sx={{
+                px: 2.5,
+                py: 1.5,
+                borderRadius: "50px",
+                background: "rgba(255,255,255,0.07)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid rgba(255,255,255,0.12)",
+              }}
+            >
+              {SOCIAL_LINKS.map((social) => (
+                <Tooltip key={social.name} title={social.name} placement="top" arrow>
+                  <IconButton
+                    component="a"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ikuti HSI Boarding School di ${social.name}`}
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      p: 0,
+                      borderRadius: "10px",
+                      background: alpha(social.color, 0.15),
+                      color: "#ffffff",
+                      transition: "all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                      "&:hover": {
+                        background: alpha(social.color, 0.35),
+                        transform: "translateY(-5px) scale(1.1)",
+                        boxShadow: `0 8px 20px ${alpha(social.color, 0.5)}`,
+                        color: "#ffffff",
+                      },
+                      "&:focus-visible": {
+                        outline: "2px solid #ffffff",
+                        outlineOffset: "2px",
+                      },
+                    }}
+                  >
+                    <Iconify icon={social.icon} width={20} />
+                  </IconButton>
+                </Tooltip>
+              ))}
+            </Stack>
+          </Box>
         </Stack>
       </Container>
     </Box>

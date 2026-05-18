@@ -192,7 +192,7 @@ export default function PSBContact() {
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 <Button
                   component="a"
-                  href="https://api.whatsapp.com/send/?phone=6289524513151&text&type=phone_number&app_absent=0"
+                  href="https://link.rotator.biz.id/tanya-psb"
                   target="_blank"
                   rel="noopener noreferrer"
                   startIcon={<Iconify icon="mdi:whatsapp" width={24} />}
