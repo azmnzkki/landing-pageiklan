@@ -154,18 +154,6 @@ export default function PSBContact() {
 
                       {/* Label */}
                       <Typography
-                        variant="subtitle2"
-                        sx={{
-                          color: alpha('#1C252E', 0.7),
-                          fontWeight: 600,
-                          fontSize: "0.9rem",
-                        }}
-                      >
-                        {contact.label}
-                      </Typography>
-
-                      {/* Value */}
-                      <Typography
                         variant="h6"
                         sx={{
                           color: "#1C252E",
@@ -173,7 +161,7 @@ export default function PSBContact() {
                           fontSize: "1.1rem",
                         }}
                       >
-                        {contact.value}
+                        {contact.label}
                       </Typography>
                     </Stack>
 
