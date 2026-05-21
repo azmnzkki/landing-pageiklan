@@ -7,16 +7,22 @@ import { Iconify } from "src/components/iconify";
 export default function PSBContact() {
   const contactInfo = [
     {
-      icon: "mdi:phone",
-      label: "Telepon",
+      icon: "mdi:whatsapp",
+      label: "WhatsApp",
       value: "+62 895-2451-3151",
-      color: "#2196F3",
+      color: "#25D366",
+      action: "https://link.rotator.biz.id/tanya-psb",
+      actionType: "link",
+      buttonLabel: "Chat WhatsApp",
     },
     {
       icon: "mdi:email",
       label: "Email",
       value: "smait@hsi.id",
       color: "#64B5F6",
+      action: "smait@hsi.id",
+      actionType: "email",
+      buttonLabel: "Kirim Email",
     },
   ];
 
@@ -98,17 +104,16 @@ export default function PSBContact() {
                     sx={{
                       p: 4,
                       height: "100%",
-                      minHeight: "200px",
+                      minHeight: "240px",
                       background: alpha('#F4F6F8', 0.9),
                       border: `1px solid ${alpha(contact.color, 0.2)}`,
                       borderRadius: "16px",
-                      cursor: "pointer",
                       transition: "all 0.3s ease",
                       position: "relative",
                       overflow: "hidden",
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "center",
+                      justifyContent: "space-between",
                       alignItems: "center",
                       textAlign: "center",
                       "&::before": {
@@ -127,7 +132,7 @@ export default function PSBContact() {
                       },
                     }}
                   >
-                    <Stack spacing={3} sx={{ alignItems: "center" }}>
+                    <Stack spacing={3} sx={{ alignItems: "center", flex: 1, justifyContent: "center" }}>
                       {/* Icon */}
                       <Box
                         sx={{
@@ -170,18 +175,41 @@ export default function PSBContact() {
                       >
                         {contact.value}
                       </Typography>
-
-                      {/* Decorative Dot */}
-                      <Box
-                        sx={{
-                          width: 8,
-                          height: 8,
-                          borderRadius: "50%",
-                          background: contact.color,
-                          mt: 1,
-                        }}
-                      />
                     </Stack>
+
+                    {/* Action Button */}
+                    <Button
+                      component="a"
+                      href={contact.actionType === "email" ? `mailto:${contact.action}` : contact.action}
+                      target={contact.actionType === "email" ? undefined : "_blank"}
+                      rel={contact.actionType === "email" ? undefined : "noopener noreferrer"}
+                      startIcon={<Iconify icon={contact.icon} width={20} />}
+                      aria-label={`${contact.buttonLabel} - ${contact.value}`}
+                      sx={{
+                        background: alpha(contact.color, 0.15),
+                        color: contact.color,
+                        fontWeight: 700,
+                        fontSize: "0.85rem",
+                        py: 1.5,
+                        minHeight: 44,
+                        borderRadius: 1,
+                        textTransform: "none",
+                        transition: "all 0.3s ease",
+                        border: `1px solid ${alpha(contact.color, 0.3)}`,
+                        width: "100%",
+                        "&:hover": {
+                          background: alpha(contact.color, 0.25),
+                          borderColor: contact.color,
+                          transform: "scale(1.02)",
+                        },
+                        "&:focus-visible": {
+                          outline: `2px solid ${contact.color}`,
+                          outlineOffset: "2px",
+                        },
+                      }}
+                    >
+                      {contact.buttonLabel}
+                    </Button>
                   </Card>
                 </m.div>
               ))}
@@ -190,31 +218,15 @@ export default function PSBContact() {
             {/* CTA Button */}
             <m.div variants={itemVariants}>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Button
-                  component="a"
-                  href="https://link.rotator.biz.id/tanya-psb"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  startIcon={<Iconify icon="mdi:whatsapp" width={24} />}
+                <Typography
+                  variant="body2"
                   sx={{
-                    background: "linear-gradient(135deg, #2196F3 0%, #64B5F6 100%)",
-                    color: "#ffffff",
-                    fontWeight: 800,
-                    fontSize: "1rem",
-                    py: 2,
-                    px: 6,
-                    borderRadius: "12px",
-                    textTransform: "none",
-                    transition: "all 0.3s ease",
-                    boxShadow: `0 12px 32px ${alpha("#2196F3", 0.3)}`,
-                    "&:hover": {
-                      transform: "translateY(-4px)",
-                      boxShadow: `0 20px 48px ${alpha("#2196F3", 0.4)}`,
-                    },
+                    color: alpha('#1C252E', 0.7),
+                    fontStyle: "italic",
                   }}
                 >
-                  Hubungi Kami Sekarang
-                </Button>
+                  Klik tombol di atas untuk menghubungi kami langsung
+                </Typography>
               </Box>
             </m.div>
           </Stack>
