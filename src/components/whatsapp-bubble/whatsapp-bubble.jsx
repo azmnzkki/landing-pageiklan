@@ -1,5 +1,7 @@
 import { Tooltip, IconButton } from '@mui/material';
 
+import { trackLead } from 'src/utils/metaPixel';
+
 import { Iconify } from 'src/components/iconify';
 
 export function WhatsAppBubble() {
@@ -11,6 +13,7 @@ export function WhatsAppBubble() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Hubungi kami melalui WhatsApp untuk pertanyaan PSB"
+        onClick={trackLead}
         sx={{
           position: 'fixed',
           bottom: { xs: 24, md: 40 },

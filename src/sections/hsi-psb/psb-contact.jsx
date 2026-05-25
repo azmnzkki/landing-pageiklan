@@ -2,6 +2,8 @@ import { m } from "framer-motion";
 
 import { Box, Card, Stack, alpha, Button, Container, Typography } from "@mui/material";
 
+import { trackLead } from "src/utils/metaPixel";
+
 import { Iconify } from "src/components/iconify";
 
 export default function PSBContact() {
@@ -173,6 +175,7 @@ export default function PSBContact() {
                       rel={contact.actionType === "email" ? undefined : "noopener noreferrer"}
                       startIcon={<Iconify icon={contact.icon} width={20} />}
                       aria-label={`${contact.buttonLabel} - ${contact.value}`}
+                      onClick={trackLead}
                       sx={{
                         background: alpha(contact.color, 0.15),
                         color: contact.color,

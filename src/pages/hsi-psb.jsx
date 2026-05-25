@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 
 import { Box, CircularProgress } from '@mui/material';
 
+import { useScrollTracking } from 'src/hooks/useScrollTracking';
+
 import PSBHero from 'src/sections/hsi-psb/psb-hero';
 
 // Lazy load heavy components
@@ -26,6 +28,9 @@ const LoadingFallback = () => (
 );
 
 export default function HSIPSBPage() {
+  // Track scroll to bottom (ViewContent event)
+  useScrollTracking();
+
   return (
     <>
       <Helmet>

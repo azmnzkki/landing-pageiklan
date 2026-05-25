@@ -1,5 +1,7 @@
 import { Box, Stack, alpha, Button, Tooltip, Container, Typography, IconButton } from "@mui/material";
 
+import { trackInitiateCheckout } from "src/utils/metaPixel";
+
 import { Iconify } from "src/components/iconify";
 
 const SOCIAL_LINKS = [
@@ -145,6 +147,7 @@ export default function PSBHero() {
               variant="contained"
               size="large"
               aria-label="Daftar sekarang di portal PSB HSI Boarding School"
+              onClick={trackInitiateCheckout}
               sx={{
                 background: "#2196F3",
                 color: "#ffffff",

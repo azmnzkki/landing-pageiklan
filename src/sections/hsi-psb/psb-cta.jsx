@@ -2,6 +2,8 @@ import { m } from "framer-motion";
 
 import { Box, Stack, alpha, Button, Container, Typography } from "@mui/material";
 
+import { trackLead, trackInitiateCheckout } from "src/utils/metaPixel";
+
 import { Iconify } from "src/components/iconify";
 
 export default function PSBCta() {
@@ -105,6 +107,7 @@ export default function PSBCta() {
                   size="large"
                   startIcon={<Iconify icon="mdi:pencil" width={20} sx={{ color: "#ffffff" }} />}
                   aria-label="Daftar sekarang di portal PSB HSI Boarding School"
+                  onClick={trackInitiateCheckout}
                   sx={{
                     background: "linear-gradient(135deg, #2196F3 0%, #64B5F6 100%)",
                     color: "#ffffff !important",
@@ -281,6 +284,7 @@ export default function PSBCta() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Chat dengan kami melalui WhatsApp"
+                  onClick={trackLead}
                   sx={{
                     display: "flex",
                     alignItems: "center",
